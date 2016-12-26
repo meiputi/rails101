@@ -1,6 +1,15 @@
-<p><%= @group.description %></p>
+<div class="col-md-12">
+  <div class="group">
+    <%= link_to("Write a Post", new_group_post_path(@group), class: "btn btn-default pull-right")%>
 
-<table class="table">
+    <% if current_user && current_user == @group.user %>
+      <%= link_to("Edit", edit_group_path(@group), class: "btn btn-primary pull-right")%>
+    <% end %>
+  </div>
+  <h2><%= @group.title %></h2>
+  <p><%= @group.description %></p>
+
+  <table class="table">
   <thead>
     <tr>
       <th>文章内容</th>
@@ -18,3 +27,9 @@
     <% end %>
   </tbody>
 </table>
+
+<div class="text-center">
+  <%= will_paginate @posts %>
+</div>
+
+</div>
